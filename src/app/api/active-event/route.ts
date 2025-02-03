@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { MongoClient, ObjectId } from "mongodb"
+import { MongoClient} from "mongodb"
 
 // MongoDB connection string (replace with your actual connection string)
 const uri = process.env.MONGO_URI as string

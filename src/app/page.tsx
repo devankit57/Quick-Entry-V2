@@ -10,7 +10,8 @@ export default function Home() {
   const [error, setError] = useState("")
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalMessage, setModalMessage] = useState("")
-  const [isWarning, setIsWarning] = useState(false)
+  const [, setIsWarning] = useState(false)
+
   const [activeTab, setActiveTab] = useState("scan")
   const [isScanning, setIsScanning] = useState(false)
   const [activeEvent, setActiveEvent] = useState("")
