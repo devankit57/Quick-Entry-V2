@@ -11,7 +11,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalMessage, setModalMessage] = useState("")
   const [, setIsWarning] = useState(false)
-
+  const [verifying, setVerifying] = useState(false);
   const [activeTab, setActiveTab] = useState("scan")
   const [isScanning, setIsScanning] = useState(false)
   const [activeEvent, setActiveEvent] = useState("")
@@ -81,7 +81,7 @@ export default function Home() {
       setError("Please scan and extract a valid registration number first.")
       return
     }
-
+    setVerifying(true);
     setError("")
     try {
       const response = await axios.post("/api/registration/verify", { registrationNumber })
@@ -144,11 +144,11 @@ export default function Home() {
               </button>
 
               <button
-                onClick={verifyRegistration}
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-3 px-6 rounded-xl backdrop-blur-xl"
-              >
-                Verify
-              </button>
+          onClick={verifyRegistration}
+          className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-3 px-6 rounded-xl backdrop-blur-xl"
+        >
+          {verifying ? "Verifying..." : "Verify"}
+        </button>
 
               {registrationNumber && (
                 <div className="mt-4 p-4 bg-white/10 rounded-xl">
@@ -245,7 +245,7 @@ export default function Home() {
           <div className="bg-white/20 backdrop-blur-xl p-6 rounded-2xl max-w-sm w-full mx-4">
             <p className="text-white text-center mb-4">{modalMessage}</p>
             <button
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => window.location.reload()}
               className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-2 px-4 rounded-xl"
             >
               Okay
