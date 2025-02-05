@@ -10,7 +10,7 @@ export default function Home() {
   const [error, setError] = useState("")
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalMessage, setModalMessage] = useState("")
-  const [, setIsWarning] = useState(false)
+  const [isWarning, setIsWarning] = useState(false)
   const [verifying, setVerifying] = useState(false);
   const [activeTab, setActiveTab] = useState("scan")
   const [isScanning, setIsScanning] = useState(false)
@@ -243,6 +243,11 @@ export default function Home() {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white/20 backdrop-blur-xl p-6 rounded-2xl max-w-sm w-full mx-4">
+          <div
+            className={`p-8 rounded shadow-lg max-w-sm w-full ${
+              isWarning ? 'bg-red-500' : 'bg-green-500'
+            }`}
+          >
             <p className="text-white text-center mb-4">{modalMessage}</p>
             <button
               onClick={() => window.location.reload()}
@@ -250,6 +255,7 @@ export default function Home() {
             >
               Okay
             </button>
+            </div>
           </div>
         </div>
       )}
